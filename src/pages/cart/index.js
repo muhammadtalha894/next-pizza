@@ -5,6 +5,8 @@ import { baseUrl } from '@/utils/baseUrl';
 function Cart() {
   const { state, dispatch } = useContext(CartContext);
   const [checkOut, setCheckOut] = useState(false);
+  const [fail, setFail] = useState(false);
+  const [success, setSuccess] = useState(false);
 
   const handleCheckOut = async () => {
     const email = localStorage.getItem('email');
@@ -26,11 +28,12 @@ function Cart() {
 
       if (res) {
         dispatch({ type: 'DROP' });
-        alert(res.message);
+        setSuccess(true);
       }
     } catch (error) {
       console.log(error);
-      alert(error.message);
+
+      setFail(true);
     }
   };
 
@@ -38,97 +41,103 @@ function Cart() {
 
   return (
     <>
-      <div
-        class='bg-teal-100 border-t-4 max-w-sm mx-auto flex justify-self-center border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md'
-        role='alert'
-      >
-        <div className='flex'>
-          <div class='py-1'>
-            <svg
-              class='fill-current h-6 w-6 text-teal-500 mr-4'
-              xmlns='http://www.w3.org/2000/svg'
-              viewBox='0 0 20 20'
-            >
-              <path d='M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM9 11V9h2v6H9v-4zm0-6h2v2H9V5z' />
-            </svg>
-          </div>
-          <div className='flex flex-row justify-between'>
-            <div>
-              <p class='font-bold'>Wohooo !</p>
-              <p class='text-sm'>Your Order has been accepted 😋</p>
-            </div>
-            <button
-              type='button'
-              class='ms-auto -mx-1.5 -my-1.5 bg-green-50 text-green-500 rounded-lg focus:ring-2 focus:ring-green-400 p-1.5 hover:bg-green-200 inline-flex items-center justify-center h-8 w-8 dark:bg-gray-800 dark:text-green-400 dark:hover:bg-gray-700'
-              data-dismiss-target='#alert-3'
-              aria-label='Close'
-            >
-              <span class='sr-only'>Close</span>
+      {success && (
+        <div
+          class='bg-teal-100 border-t-4 max-w-sm mx-auto flex justify-self-center border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md'
+          role='alert'
+        >
+          <div className='flex'>
+            <div class='py-1'>
               <svg
-                class='w-3 h-3'
-                aria-hidden='true'
+                class='fill-current h-6 w-6 text-teal-500 mr-4'
                 xmlns='http://www.w3.org/2000/svg'
-                fill='none'
-                viewBox='0 0 14 14'
+                viewBox='0 0 20 20'
               >
-                <path
-                  stroke='currentColor'
-                  stroke-linecap='round'
-                  stroke-linejoin='round'
-                  stroke-width='2'
-                  d='m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6'
-                />
+                <path d='M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM9 11V9h2v6H9v-4zm0-6h2v2H9V5z' />
               </svg>
-            </button>
+            </div>
+            <div className='flex flex-row justify-between'>
+              <div>
+                <p class='font-bold'>Wohooo !</p>
+                <p class='text-sm'>Your Order has been accepted 😋</p>
+              </div>
+              <button
+                type='button'
+                class='ms-auto -mx-1.5 -my-1.5 bg-green-50 text-green-500 rounded-lg focus:ring-2 focus:ring-green-400 p-1.5 hover:bg-green-200 inline-flex items-center justify-center h-8 w-8 dark:bg-gray-800 dark:text-green-400 dark:hover:bg-gray-700'
+                data-dismiss-target='#alert-3'
+                aria-label='Close'
+                onClick={() => setSuccess(false)}
+              >
+                <span class='sr-only'>Close</span>
+                <svg
+                  class='w-3 h-3'
+                  aria-hidden='true'
+                  xmlns='http://www.w3.org/2000/svg'
+                  fill='none'
+                  viewBox='0 0 14 14'
+                >
+                  <path
+                    stroke='currentColor'
+                    stroke-linecap='round'
+                    stroke-linejoin='round'
+                    stroke-width='2'
+                    d='m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6'
+                  />
+                </svg>
+              </button>
+            </div>
           </div>
         </div>
-      </div>
+      )}
 
-      <div
-        className='bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative'
-        role='alert'
-      >
-        <div className='flex'>
-          <div class='py-1'>
-            <svg
-              class='fill-current h-6 w-6 text-red-500 mr-4'
-              xmlns='http://www.w3.org/2000/svg'
-              viewBox='0 0 20 20'
-            >
-              <path d='M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM9 11V9h2v6H9v-4zm0-6h2v2H9V5z' />
-            </svg>
-          </div>
-          <div className='flex flex-row justify-between'>
-            <div>
-              <p class='font-bold'>Holy smokes !!</p>
-              <p class='text-sm'>hello</p>
-            </div>
-            <button
-              type='button'
-              class='ms-auto -mx-1.5 -my-1.5 bg-green-50 text-green-500 rounded-lg focus:ring-2 focus:ring-green-400 p-1.5 hover:bg-green-200 inline-flex items-center justify-center h-8 w-8 dark:bg-gray-800 dark:text-green-400 dark:hover:bg-gray-700'
-              data-dismiss-target='#alert-3'
-              aria-label='Close'
-            >
-              <span class='sr-only'>Close</span>
+      {fail && (
+        <div
+          className='bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative'
+          role='alert'
+        >
+          <div className='flex'>
+            <div class='py-1'>
               <svg
-                class='w-3 h-3'
-                aria-hidden='true'
+                class='fill-current h-6 w-6 text-red-500 mr-4'
                 xmlns='http://www.w3.org/2000/svg'
-                fill='none'
-                viewBox='0 0 14 14'
+                viewBox='0 0 20 20'
               >
-                <path
-                  stroke='currentColor'
-                  stroke-linecap='round'
-                  stroke-linejoin='round'
-                  stroke-width='2'
-                  d='m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6'
-                />
+                <path d='M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM9 11V9h2v6H9v-4zm0-6h2v2H9V5z' />
               </svg>
-            </button>
+            </div>
+            <div className='flex flex-row justify-between'>
+              <div>
+                <p class='font-bold'>Holy smokes !!</p>
+                <p class='text-sm'>hello</p>
+              </div>
+              <button
+                onClick={() => setFail(false)}
+                type='button'
+                class='ms-auto -mx-1.5 -my-1.5 bg-green-50 text-green-500 rounded-lg focus:ring-2 focus:ring-green-400 p-1.5 hover:bg-green-200 inline-flex items-center justify-center h-8 w-8 dark:bg-gray-800 dark:text-green-400 dark:hover:bg-gray-700'
+                data-dismiss-target='#alert-3'
+                aria-label='Close'
+              >
+                <span class='sr-only'>Close</span>
+                <svg
+                  class='w-3 h-3'
+                  aria-hidden='true'
+                  xmlns='http://www.w3.org/2000/svg'
+                  fill='none'
+                  viewBox='0 0 14 14'
+                >
+                  <path
+                    stroke='currentColor'
+                    stroke-linecap='round'
+                    stroke-linejoin='round'
+                    stroke-width='2'
+                    d='m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6'
+                  />
+                </svg>
+              </button>
+            </div>
           </div>
         </div>
-      </div>
+      )}
 
       <div style={{ minHeight: '95vh' }} className='flex items-center '>
         <div class='container mx-auto flex border-gradient p-3 pb-10 m-10  rounded-lg flex-col'>

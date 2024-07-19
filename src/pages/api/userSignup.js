@@ -21,5 +21,5 @@ export default async function signUpApi(req, res) {
 
   let authToken = jwt.sign(user._id.toString(), process.env.SECRETKEYJWT);
 
-  res.status(200).json({ success: true, authToken });
+  res.status(200).json({ success: true, authToken, isAdmin: user.isAdmin });
 }

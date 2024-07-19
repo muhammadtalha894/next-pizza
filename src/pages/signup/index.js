@@ -27,6 +27,7 @@ const Signup = () => {
       if (data) {
         localStorage.setItem('authToken', data.authToken);
         localStorage.setItem('email', creatential.email);
+        localStorage.setItem('isAdmin', data.isAdmin);
         router.push('/');
       } else {
         alert('Something Went Wrong');

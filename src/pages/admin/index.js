@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-// import Custom404 from "../404";
+import Custom404 from '../404';
 
 const sidesPriceOption = { single: '', double: '' };
 const pizzaPriceOption = { regular: '', medium: '', large: '' };
 function Admin() {
-  const [mounted, setMounted] = useState(true);
+  const [mounted, setMounted] = useState(false);
   const [foodData, setFoodData] = useState({
     name: '',
     foodCategory: '',
@@ -47,6 +47,7 @@ function Admin() {
       alert('Failed to create');
     }
   };
+
   useEffect(() => {
     if (JSON.parse(localStorage.getItem('isAdmin')) === true) {
       setMounted(true);
@@ -217,7 +218,7 @@ function Admin() {
           </div>
         </div>
       ) : (
-        <div></div>
+        <Custom404 />
       )}
     </>
   );

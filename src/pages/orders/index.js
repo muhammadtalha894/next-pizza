@@ -16,7 +16,7 @@ function Orders() {
       let response = await res.json();
       console.log(response);
 
-      setOrdersData(response?.data.order_data);
+      setOrdersData(response?.data?.order_data);
     });
   };
 
@@ -36,8 +36,7 @@ function Orders() {
                     <>
                       {data.order_date ? (
                         <div className='font-bold text-xl mb-2'>
-                          {' '}
-                          {data.order_date} <hr />{' '}
+                          {data.order_date} <hr />
                         </div>
                       ) : (
                         <div className='my-4 w-96 border-black border-gradient p-4 dark:border-white rounded-lg'>
