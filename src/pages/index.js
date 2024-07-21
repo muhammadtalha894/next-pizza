@@ -13,7 +13,7 @@ export default function Home({ data }) {
   const [typeFilter, setTypeFilter] = useState(false);
 
   const handleData = () => {
-    data.map((data) => {
+    data?.map((data) => {
       return categories.add(data.category), foodData.push(data);
     });
   };
@@ -70,7 +70,7 @@ export default function Home({ data }) {
       </div>
 
       <div className='container mx-auto'>
-        {categoryArray.map((category) => {
+        {categoryArray?.map((category) => {
           return (
             <>
               <div
@@ -114,6 +114,5 @@ export const getStaticProps = async () => {
 
   return {
     props: { data: data || null },
-    
   };
 };
