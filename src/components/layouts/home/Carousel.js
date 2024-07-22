@@ -20,7 +20,7 @@ const CarouselComponent = () => {
           style={{ maxHeight: '36rem' }}
           className='object-center brightness-50'
         >
-          <img src={`/pizza.jpg`} alt='pizza' />
+          <img src={`/pizza.jpg`} alt='pizza' key={index} />
         </div>
       ))}
     </Carousel>
