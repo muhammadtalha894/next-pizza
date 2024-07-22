@@ -70,17 +70,20 @@ export default function Home({ data }) {
       </div>
 
       <div className='container mx-auto'>
-        {categoryArray?.map((category) => {
+        {categoryArray?.map((category,index) => {
           return (
             <>
               <div
-                key={category}
+                key={index}
                 className='text-4xl mt-10 mb-3 uppercase font-bold pl-3'
               >
                 {category}
               </div>
               <hr />
-              <div className='flex flex-col items-center justify-center'>
+              <div
+                className='flex flex-col items-center justify-center'
+                key={index}
+              >
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mx-auto'>
                   {data
                     .filter((data) => data.category === category)
